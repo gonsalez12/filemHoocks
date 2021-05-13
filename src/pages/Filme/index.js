@@ -2,6 +2,7 @@ import { useEffect, useState} from 'react';
 import {useParams, useHistory} from 'react-router-dom';
 import api from '../../services/api';
 import './filme-info.css';
+import {toast} from 'react-toastify';
 
 
 function Filme() {
@@ -38,13 +39,14 @@ function Filme() {
     const hasFilme = filmesSalvos.some( (filmesSalvos) => filmesSalvos.id === filme.id)
 
     if(hasFilme){
-      alert("Voce ja possui esse filme salvo");
+      toast.error("Voce ja possui esse filme salvo");
       return;
     }
 
     filmesSalvos.push(filme);
     localStorage.setItem('filmes', JSON.stringify(filmesSalvos));
-    alert("Filme salvo com sucesso");
+    toast.success("Filme salvo com sucesso");
+    
 
   }
 
